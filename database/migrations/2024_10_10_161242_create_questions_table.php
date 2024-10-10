@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('set_id')->constrained('sets')->onDelete('cascade'); // Links to the set
+            $table->foreignId('correct_answer_id')->constrained('words')->onDelete('cascade'); // The correct word
             $table->timestamps();
         });
     }

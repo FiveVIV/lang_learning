@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Language extends Model
 {
@@ -13,5 +14,10 @@ class Language extends Model
     public function words(): HasMany
     {
         return $this->hasMany(Word::class);
+    }
+
+    public function sets(): MorphMany
+    {
+        return $this->morphMany(Set::class, 'model');
     }
 }

@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             WordSeeder::class,
             UserSeeder::class,
+            SetSeeder::class,
+            QuestionSeeder::class,
+            SetUserSeeder::class,
         ]);
     }
 }

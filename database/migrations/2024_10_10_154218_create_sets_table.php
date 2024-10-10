@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('sets', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // e.g., "Beginner Words 1-10"
-            $table->foreignId('language_id')->constrained('languages')->onDelete('cascade');
+            $table->string('name');
+            $table->unsignedBigInteger('model_id');
+            $table->string('model_type');
             $table->timestamps();
         });
     }

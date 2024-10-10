@@ -16,9 +16,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Volt::route('language/{language}', 'pages.dashboard.languages.categories')->name('language');
 
-    Volt::route('words/{language}', 'pages.dashboard.languages.words.multiple-choice')->name('words.multiple-choice');
+    Volt::route('words/{language}/set/{set}', 'pages.dashboard.languages.words.multiple-choice')->name('words.multiple-choice');
 
-
+    Volt::route('words/{language}/set', 'pages.dashboard.languages.words.set')->name('words.sets');
 
 });
 

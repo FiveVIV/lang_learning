@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Language;
+use App\Models\Set;
 use App\Models\Word;
 use Illuminate\Support\Collection;
 use Livewire\Volt\Component;
@@ -10,7 +11,9 @@ new #[Layout('layouts.app')] class extends Component {
 
     public Language $language;
 
-    public Collection $questions;
+    public Set $set;
+
+    public Illuminate\Database\Eloquent\Collection $questions;
 
     public Collection $answerSheet;
 
@@ -19,9 +22,14 @@ new #[Layout('layouts.app')] class extends Component {
     public ?Word $correctAnswer = null;
 
 
-    public function mount(Language $language): void
+    public function mount(Language $language, Set $set): void
     {
         $this->language = $language;
+        $this->set = $set;
+        $this->questions = $set->questions()->get();
+
+        dd($this->questions);
+
         $this->questions = $this->answerSheet = collect();
         $this->newQuestion();
     }
@@ -128,15 +136,24 @@ new #[Layout('layouts.app')] class extends Component {
                                     @foreach($answerSheet->except('given_answer') as $answer)
                                         @if ($answerSheet["given_answer"])
                                             @if ($answer["question"] == $answerSheet["given_answer"])
-                                                <button wire:click="answerQuestion({{ $answer['question'] }})" type="button" class="rounded-md bg-sky-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" disabled>
+                                                <button wire:click="answerQuestion({{ $answer['question'] }})"
+                                                        type="button"
+                                                        class="rounded-md bg-sky-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                                                        disabled>
                                                     {{ $answer['question']->english_word }}
                                                 </button>
                                             @elseif ($answer["question"] == $correctAnswer)
-                                                <button wire:click="answerQuestion({{ $answer['question'] }})" type="button" class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" disabled>
-                                                {{ $answer['question']->english_word }}
-                                            </button>
+                                                <button wire:click="answerQuestion({{ $answer['question'] }})"
+                                                        type="button"
+                                                        class="rounded-md bg-green-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                                                        disabled>
+                                                    {{ $answer['question']->english_word }}
+                                                </button>
                                             @else
-                                                <button wire:click="answerQuestion({{ $answer['question'] }})" type="button" class="rounded-md bg-red-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" disabled>
+                                                <button wire:click="answerQuestion({{ $answer['question'] }})"
+                                                        type="button"
+                                                        class="rounded-md bg-red-400 px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"
+                                                        disabled>
                                                     {{ $answer['question']->english_word }}
                                                 </button>
                                             @endif
