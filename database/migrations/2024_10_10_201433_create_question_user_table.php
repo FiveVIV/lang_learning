@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_question', function (Blueprint $table) {
+        Schema::create('question_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
-            $table->foreignId('given_answer_id')->constrained('words')->onDelete('cascade'); // The answer the user selected
+            $table->boolean('correctly_answered'); // The answer the user selected
             $table->timestamps();
         });
     }

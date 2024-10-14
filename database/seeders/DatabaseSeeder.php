@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SetSeeder::class,
             QuestionSeeder::class,
             SetUserSeeder::class,
+            QuestionUserSeeder::class,
         ]);
     }
 }

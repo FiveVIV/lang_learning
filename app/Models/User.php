@@ -56,7 +56,6 @@ class User extends Authenticatable
     public function answeredQuestions(): BelongsToMany
     {
         return $this->belongsToMany(Question::class)
-            ->withPivot('given_answer_id', 'answered_correctly')
-            ->withTimestamps();
+            ->withPivot('correctly_answered');
     }
 }

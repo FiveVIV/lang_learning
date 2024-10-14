@@ -25,7 +25,7 @@ class Question extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
-            ->withPivot('given_answer_id', 'answered_correctly')
+            ->withPivot('is_correct')
             ->withTimestamps();
     }
 }
