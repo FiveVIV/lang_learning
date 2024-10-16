@@ -18,7 +18,18 @@ class LanguageSeeder extends Seeder
             [
                 "code" => "IT",
                 "name" => "Italian",
-            ]
+                "native_name" => "Italiano",
+            ],
+            [
+                "code" => "ES",
+                "name" => "Spanish",
+                "native_name" => "Español",
+            ],
+            [
+                "code" => "DE",
+                "name" => "German",
+                "native_name" => "Deutsch",
+            ],
         ]);
     }
 }

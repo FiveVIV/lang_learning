@@ -18,9 +18,14 @@ new #[Layout('layouts.app')] class extends Component {
 
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $language->name }}
-        </h2>
+        <x-breadcrumb-holder>
+            <x-breadcrumb :href="route('languages-selection')">
+                Languages
+            </x-breadcrumb>
+            <x-breadcrumb :href="route('language', $language)">
+                {{ $language->name }}
+            </x-breadcrumb>
+        </x-breadcrumb-holder>
     </x-slot>
 
     <div class="py-12">
